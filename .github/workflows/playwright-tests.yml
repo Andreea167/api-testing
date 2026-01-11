@@ -11,6 +11,10 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
     
     steps:
     - name: Checkout code
@@ -75,8 +79,12 @@ jobs:
       run: |
         echo "## Test Results 📊" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
-        echo "✅ Tests completed!" >> $GITHUB_STEP_SUMMARY
+        echo " Tests completed!" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
-        echo "📁 Allure Report: Download the 'allure-report' artifact to view detailed results" >> $GITHUB_STEP_SUMMARY
-        echo "📁 Playwright Report: Download the 'playwright-report' artifact" >> $GITHUB_STEP_SUMMARY
+        echo " Allure Report: Download the 'allure-report' artifact to view detailed results" >> $GITHUB_STEP_SUMMARY
+        echo " Playwright Report: Download the 'playwright-report' artifact" >> $GITHUB_STEP_SUMMARY
+        if [ "${{ github.ref }}" == "refs/heads/main" ]; then
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "🌐 Live Allure Report: https://andreea167.github.io/api-testing/" >> $GITHUB_STEP_SUMMARY
+        fi
 
