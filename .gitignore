@@ -6,3 +6,7 @@ dist/
 *.log
 .DS_Store
 
+# Allure
+allure-results/
+allure-report/
+

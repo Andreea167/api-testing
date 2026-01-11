@@ -9,7 +9,12 @@ export default defineConfig({
   workers: 1,
   reporter: [
     ['html'],
-    ['list']
+    ['list'],
+    ['allure-playwright', { 
+      outputFolder: 'allure-results',
+      detail: true,
+      suiteTitle: true
+    }]
   ],
   use: {
     baseURL: 'https://restful-booker.herokuapp.com',
