@@ -85,6 +85,6 @@ jobs:
         echo " Playwright Report: Download the 'playwright-report' artifact" >> $GITHUB_STEP_SUMMARY
         if [ "${{ github.ref }}" == "refs/heads/main" ]; then
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "🌐 Live Allure Report: https://andreea167.github.io/api-testing/" >> $GITHUB_STEP_SUMMARY
+          echo "Live Allure Report: https://andreea167.github.io/api-testing/" >> $GITHUB_STEP_SUMMARY
         fi
 
