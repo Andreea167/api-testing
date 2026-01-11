@@ -25,6 +25,12 @@ jobs:
       with:
         node-version: '20'
         cache: 'npm'
+    
+    - name: Setup Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
         
     - name: Install dependencies
       run: npm ci
@@ -39,7 +45,15 @@ jobs:
     - name: Generate Allure Report
       if: always()
       run: |
-        npm run allure:generate
+        echo "Checking for allure-results directory..."
+        ls -la
+        if [ -d "allure-results" ]; then
+          echo "allure-results found, generating report..."
+          npm run allure:generate
+        else
+          echo "No allure-results directory found!"
+          exit 1
+        fi
         
     - name: Upload Allure Results
       if: always()
